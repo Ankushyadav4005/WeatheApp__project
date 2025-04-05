@@ -1,83 +1,53 @@
-// console.log("hello Ankush yadav");
-
-
-//   function renderWeatherInfo( data) 
-//   {
-//     console.log("weather data:->",data);
-
-// let newPara=document.createElement('p');
-// newPara.textContent= `${data?.main?.temp.toFixed(2)} °C`;
-// document.body.appendChild(newPara);
- 
-//   }
-// async function showWeather()
-// {
-//     try{
-    
-
-// let city="delhi";
-// let API_KEY="bb2e0f98535182b047bb44a7135a9fc5";
-// const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
-// const data=  await response.json();
-// // console.log("weather data:->",data);
-
-// // let newPara=document.createElement('p');
-// // newPara.textContent= `${data?.main?.temp.toFixed(2)} °C`;
-// // document.body.appendChild(newPara);
- 
-//      renderWeatherInfo(data);
-
-//     }
-
-// catch(error)
-// {
-// // handle the error here 
-// }
-
-
-
-// }
-
-
-
-
-// function getWeather(result)
-// {
-//   console.log(result);
-//   const newparaGraph= document.createElement('p');
-//   newparaGraph.innerText=`${result?.main?.temp.toFixed(2)} °C`;
-//   document.body.appendChild(newparaGraph);
-
-// }
-
-
-//  async function getCustomWeatherDetail()
-// {
-
-//   try{
-//     const  lat=77.2167;
-//     const lon=28.6667;
-//     let API_KEY="bb2e0f98535182b047bb44a7135a9fc5";
-//     const response=  await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`);
-//     const result=  await response.json();
-
-//       getWeather(result);
-
-//   }
-//     catch(e)
-//     {
-//       console.log("this function get error ",e);
-//     }
-
-   
-// }
-
-
 
 const userTab=document.querySelector("[data-userWeather]");
-const sesrchTab=document.querySelector("[data-searchWeather]");
+const searchTab=document.querySelector("[data-searchWeather]");
 const userContainer=document.querySelector(".weather-container");
 const grantAccesContainer=document.querySelector(".grant-location-container");
 const searchform=document.querySelector("[data-searchForm]");
 const loadingScreen=document.querySelector(".loading-container");
 const userInFoContainer=document.querySelector(".user-info-container");
+
+let currTab=userTab;
+let API_KEY="bb2e0f98535182b047bb44a7135a9fc5";
+currTab.classList.add("current-tab");   
+
+function switchTab(clickedTab)
+{
+   if(clickedTab!=currTab)
+   {
+    currTab.classList.remove("current-tab");
+    currTab=clickedTab;
+    currTab.classList.add("current-tab");
+
+    if(!searchform.classList.contains("active"))
+    {
+        userInFoContainer.classList.remove("active");
+        grantAccesContainer.classList.remove("active");
+        searchform.classList.add("active");
+    }
+    else{
+        // pahle hm search bale pe tha ,ab hm your weather par switch karege
+        searchform.classList.remove("active");
+        userInFoContainer.classList.remove ("active");
+
+        // ab hm your weather tab par aa gya hu , toh weather bhi display karna padega ,so let's check storage first
+        // for coordinates,if we have saved them there
+        getfromSessionStorage();
+      
+          
+
+    }
+     
+   }
+}
+
+userTab.addEventListener('click',()=>
+{
+    switchTab(userTab)
+});
+
+searchTab.addEventListener('click',()=>
+{
+    switchTab(searchTab);
+});
+
