@@ -27,12 +27,12 @@ u
      </div>
 
      <!--   Search form  form-container -->
-      <form class="form-container" >
+      <form class="form-container" data-searchForm>
         <input type="text" placeholder="Search your city.." data-searchInput >
         <button class="btn"> <img src="./WeatherApp_img/assets/search.png" height="13" width="13" loading="lazy"></button>
       </form>
       
-
+       
       <!-- Loading Screen container-->
        <div class="loading-container"> 
         <img src="./WeatherApp_img/assets/loading.gif" height="150" width="150">
@@ -41,11 +41,43 @@ u
 
        <!-- show weather info-->
         <div class="user-info-container">
+            <!--  city name and flag-->
             <div>
                 <p data-cityName></p>
                 <img data-country-icon>
             </div>
-            <p></p>
+            <!-- weather description-->
+            <p data-weatherDesc></p>
+            <!-- weather icon-->
+            <img data-weatherIcon >
+            <!-- weather tempratur e-->
+            <div>
+           <p data-temp></p>
+
+
+             <div class="parameter-container">
+                    <!-- Card 1-->
+                    <div class="parameter">
+                        <img src="./WeatherApp_img/assets/wind.png" >
+                        <p windspeed></p>
+                        <p data-windparamer></p>
+                    </div>
+                   <!-- Card 2-->
+                     <div class="parameter">
+                          <img src="./WeatherApp_img/assets/humidity.png" >
+                          <p> humidity</p>
+                          <p data-humidity></p>
+                     </div>
+                
+                     <!-- Card 3-->
+                    <div class="parameter">
+                        <img src="./WeatherApp_img/assets/cloud.png" >
+                        <p>Clouds</p>
+                        <P data-cloudiness></P>
+                    </div>
+             </div>
+
+            </div>
         </div>
 
 </div>
