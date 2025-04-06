@@ -64,7 +64,7 @@ function getfromSessionStorage()
         const coordinates=JSON.parse(localCoordinates);
         fetchUserWeatherInfo(coordinates);
     }
-}
+ }
 
 
  async function fetchUserWeatherInfo(coordinates )
@@ -80,9 +80,29 @@ function getfromSessionStorage()
           const data=await response.JSON();
           loadingScreen.classList.remove();
            userInFoContainer.classList.visible();
+           renderWeatherInfo(data);
     }
     catch(err)
     {
-
+        loadingScreen.classList.remove();
+        console.log("this code has an error 404");
     }
 }
+
+function renderWeatherInfo(weather)
+ {
+    //firstly,we have to fetch the element  
+    const cityName =document.querySelector("[data-cityName]");
+    const countryIcon=document.querySelector("[data-country-icon]");
+    const desc=document.querySelector("[data-weatherDesc]");
+    const weatherIcon=document.querySelector("[data-weatherIcon]");
+    const temp=document.querySelector("[data-temp]");
+    const windspeed=document.querySelector("[data-windspeed]");
+    const humidity=document.querySelector("[data-humidit]");
+    const cloudness=document.querySelector("[data-cloudiness]")
+
+    //  fetch value from weatherINfo object and put it UI element
+    
+
+
+ }
