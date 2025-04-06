@@ -51,3 +51,38 @@ searchTab.addEventListener('click',()=>
     switchTab(searchTab);
 });
 
+// check if cordinated are already present in session storage
+function getfromSessionStorage()
+{
+    const localCoordinates=sessionStorage.getItem("user-coordinates");
+    if(!localCoordinates)
+    {
+        grantAccesContainer.classList.add("active");
+    }
+    else
+    {
+        const coordinates=JSON.parse(localCoordinates);
+        fetchUserWeatherInfo(coordinates);
+    }
+}
+
+
+ async function fetchUserWeatherInfo(coordinates )
+{
+    const{lat,lon}=coordinates;
+    //make container invisible
+    grantAccesContainer.classList.remove("active");
+    // maker loader vissible
+    loadingScreen.classList.add("active")
+    // ApI call 
+    try{
+        const response= await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&unit=metric`);
+          const data=await response.JSON();
+          loadingScreen.classList.remove();
+           userInFoContainer.classList.visible();
+    }
+    catch(err)
+    {
+
+    }
+}
